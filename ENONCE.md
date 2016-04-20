@@ -26,12 +26,16 @@ Tous les éléments doivent avoir les éléments de validation suivants
   - Facebook: Facultatif, URL, (BONUS) Existe (http://facebook.com/NOM)
   - Avatar (BONUS): Facultatif, Image, Taille maximum 420px x 420px
 
-Ce formulaire doit être mappé dans une entité et être persistée dans la base de donnée.
+Ce formulaire doit être mappé dans une entité et être persistée dans une base de données de votre choix.
 Le formulaire se doit d'être un minimum mit en forme
 Le champ Avatar (BONUS) doit être envoyé dans le dossier `/web/upload`
 
 Vous avez à votre disposition, et pré-installé:
   - Un bundle Potogan\TestBundle\
   - Un controller de base
-  - Les paramètres de la base sont renseignés
   - Une vue avec le framework CSS Bootstrap
+  - Doctrine migrations bundle
+
+Une fois terminé, vous devrez créer une Pull Request sur GitHub.
+
+Vous êtes libres d'ajouter les librairies que vous désirez tant qu'elles sont dans le cadre du projet
