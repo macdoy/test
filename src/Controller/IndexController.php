@@ -42,15 +42,15 @@ class IndexController extends Controller
     $errors = $this->get('validator')->validate($user);
     if(count($errors) > 0)
       {
-        echo 'Something went wrong!';
+        echo '<p class="error">Something went wrong </p>';
       }
     else if (($form->get('nom')->getData()))
-    {
-      echo 'User saved!';
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($user);
-      $em->flush();
-    }
+      {
+        echo '<p class="success">User saved!</p>';
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+      }
     return array('form' => $form->createView());
   }
 }

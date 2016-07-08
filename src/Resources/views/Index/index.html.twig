@@ -2,9 +2,13 @@
 <html>
 <head>
     <title>Potogan Application Test</title>
+    {% stylesheets '@PotoganTestBundle/Resources/public/css/index.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
     <meta charset="utf8">
 </head>
 <body>
   {{form(form)}}
+</div>
 </body>
 </html>

@@ -1,0 +1,16 @@
+body {
+ background-image: url("http://static.vecteezy.com/system/resources/previews/000/094/491/original/polygonal-texture-background-vector.jpg");
+ background-size: auto;
+ text-align: center;
+ font-family: sans-serif;
+ margin-top: 100px;
+ font-size: 100%;
+ }
+
+.error{
+  color: red;
+}
+
+.success{
+  color: green;
+}
