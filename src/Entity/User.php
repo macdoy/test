@@ -5,6 +5,7 @@ namespace Potogan\TestBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Potogan\TestBundle\Validator\Constraints as AcmeAssert;
 
 /**
  * User
@@ -45,6 +46,7 @@ class User
   protected $email;
   /**
   * @ORM\Column(name="mobile", type="string", length=255)
+  * @AcmeAssert\Numeric\ContainsNumeric
   *
   * @var string
   */
@@ -57,6 +59,7 @@ class User
   protected $pseudo;
   /**
   * @ORM\Column(name="twitter", type="string", length=255)
+  * @AcmeAssert\Twitter\ContainsTwitter
   *
   * @var string
   */
