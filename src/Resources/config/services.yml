@@ -1,1 +1,4 @@
 # Services definition
+services:
+    img.uploader:
+        class: Potogan\TestBundle\Entity\FileUploader

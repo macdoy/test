@@ -9,5 +9,5 @@ use Symfony\Component\Validator\Constraint;
 */
 class ContainsTwitter extends Constraint
 {
-  public $message = 'The string %string% is not a valide Twitter.';
+    public $message = 'The string %string% is not a valide Twitter.';
 }

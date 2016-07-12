@@ -1,11 +1,11 @@
 <?php
 
-namespace Potogan\TestBundle\Validator\Constraints\Twitter;
+namespace Potogan\TestBundle\Validator\Constraints\Facebook;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-class ContainsTwitterValidator extends ConstraintValidator
+class ContainsFacebookValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
@@ -14,7 +14,7 @@ class ContainsTwitterValidator extends ConstraintValidator
         {
             $curl = curl_init();
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://twitter.com/'.substr($value, 1),
+                CURLOPT_URL => $value,
                 CURLOPT_USERAGENT => "chrome",
                 CURLOPT_HEADER => true,
                 CURLOPT_RETURNTRANSFER => true,
@@ -22,7 +22,7 @@ class ContainsTwitterValidator extends ConstraintValidator
             $header = explode("\n", curl_exec($curl));
             curl_close($curl);
         }
-        if (strpos($header[0], '404') || $value !== null && substr($value, 0 , 1) !== "@")
+        if (strpos($header[0], '404') || $value !== null && substr($value, 0 , 24) !== "https://www.facebook.com")
         {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%string%', $value)

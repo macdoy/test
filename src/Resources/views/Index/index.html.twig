@@ -5,10 +5,22 @@
     {% stylesheets '@PotoganTestBundle/Resources/public/css/index.css' %}
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
     {% endstylesheets %}
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <meta charset="utf8">
 </head>
 <body>
-  {{form(form)}}
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        {% if error == false and nom %}
+          <p class="error"> Something went wrong!</p>
+        {% elseif error == true %}
+          <p class="success"> User saved successfully!</p>
+        {% endif %}
+        <h1>Potogan Application Test</h1>
+        {{ form(form) }}
+      </div>
+    </div>
+  </div>
 </body>
 </html>

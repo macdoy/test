@@ -9,5 +9,5 @@ use Symfony\Component\Validator\Constraint;
 */
 class ContainsNumeric extends Constraint
 {
-  public $message = 'The string %string% is not a valide mobile.';
+    public $message = 'The string %string% is not a valide mobile.';
 }

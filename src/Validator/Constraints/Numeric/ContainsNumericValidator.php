@@ -9,12 +9,11 @@ class ContainsNumericValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-      if ($value == NULL){}
-      else if (!preg_match('/^[0-9]+$/', $value, $matches) || strlen($value) != 10)
+        if ($value !== null && !preg_match('/^\d{10}$/', $value, $matches))
         {
-          $this->context->buildViolation($constraint->message)
-              ->setParameter('%string%', $value)
-              ->addViolation();
+            $this->context->buildViolation($constraint->message)
+                ->setParameter('%string%', $value)
+                ->addViolation();
         }
     }
 }
