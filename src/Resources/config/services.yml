@@ -1,4 +1,5 @@
 # Services definition
 services:
-    img.uploader:
-        class: Potogan\TestBundle\Entity\FileUploader
+    potogan_test.file_uploader.file_uploader:
+        class: Potogan\TestBundle\FileUploader\FileUploader
+        arguments: [$dir, $allowed, $user]

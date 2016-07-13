@@ -9,5 +9,5 @@ use Symfony\Component\Validator\Constraint;
 */
 class ContainsFacebook extends Constraint
 {
-    public $message = 'The string %string% is not a valide Facebook.';
+    public $message = '%string% is not a valid Facebook.';
 }

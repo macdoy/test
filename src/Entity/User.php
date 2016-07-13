@@ -25,7 +25,7 @@ class User extends AbstractType
     *
     * @var integer
     */
-    public $id;
+    protected $id;
     /**
     * @ORM\Column(name="prenom", type="string", length=255)
     *
@@ -75,9 +75,27 @@ class User extends AbstractType
     /**
     * @ORM\Column(name="extension", type="string", length=255, nullable=true)
     */
-    public $extension;
-    public $file;
-    public $tempFilename;
+    protected $extension;
+    /**
+    * @Assert\Image(maxWidth = 420, maxHeight = 420)
+    */
+    protected $file;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getExtension()
+    {
+        return $this->extension;
+    }
+
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+        return $this;
+    }
 
     public function getPrenom()
     {
@@ -164,6 +182,7 @@ class User extends AbstractType
     public function setFile(UploadedFile $file)
     {
         $this->file = $file;
+
         if ($this->file) {
             $this->extension = $this->file->guessExtension();
         }

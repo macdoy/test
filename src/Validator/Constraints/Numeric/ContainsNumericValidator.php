@@ -9,8 +9,7 @@ class ContainsNumericValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if ($value !== null && !preg_match('/^\d{10}$/', $value, $matches))
-        {
+        if ($value !== null && !preg_match('/^\d{10}$/', $value)) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%string%', $value)
                 ->addViolation();
