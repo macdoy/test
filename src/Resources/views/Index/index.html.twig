@@ -13,12 +13,60 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         {% if error == false and nom %}
-          <p class="error"> Something went wrong!</p>
+          <div class="alert alert-danger" width=200pix> Something went wrong!</div>
         {% elseif error == true %}
-          <p class="success"> User saved successfully!</p>
+          <div class="alert alert-success"> User saved successfully!</div>
         {% endif %}
         <h1>Potogan Application Test</h1>
-        {{ form(form) }}
+        {{form_start(form)}}
+          {% if error == false and nom %}
+            <div class="alert alert-danger">
+              {{form_errors(form.nom)}}
+              {{form_errors(form.prenom)}}
+              {{form_errors(form.email)}}
+              {{form_errors(form.mobile)}}
+              {{form_errors(form.pseudo)}}
+              {{form_errors(form.twitter)}}
+              {{form_errors(form.facebook)}}
+              {{form_errors(form.file)}}
+            </div>
+          {% endif %}
+          <div class="row">
+            <div class="lab">{{form_label(form.nom)}}</div>
+            {{form_widget(form.nom)}}
+          </div>
+          <div class="row">
+            <div class="lab">{{form_label(form.prenom)}}</div>
+            {{form_widget(form.prenom)}}
+          </div>
+          <div class="row">
+            <div class="lab">{{form_label(form.email)}}</div>
+            {{form_widget(form.email)}}
+          </div>
+          <div class="row">
+            <div class="lab">{{form_label(form.mobile)}}</div>
+            {{form_widget(form.mobile)}}
+          </div>
+          <div class="row">
+            <div class="lab">{{form_label(form.pseudo)}}</div>
+            {{form_widget(form.pseudo)}}
+          </div>
+          <div class="row">
+            <div class="lab">{{form_label(form.twitter)}}</div>
+            {{form_widget(form.twitter)}}
+          </div>
+          <div class="row">
+            <div class="lab">{{form_label(form.facebook)}}</div>
+            {{form_widget(form.facebook)}}
+          </div>
+          <div class="row">
+            <div class="lab" id="file">{{form_label(form.file)}}</div>
+            {{form_widget(form.file)}}
+          </div>
+          <div class="row">
+            {{form_row(form.save)}}
+          </div>
+        {{form_end(form)}}
       </div>
     </div>
   </div>

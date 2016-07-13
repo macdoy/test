@@ -19,7 +19,7 @@ class FileUploader
         }
 
         if (!in_array($user->getExtension(), $allowed)) {
-            return;
+            throw new Exception("Forbiden extension");
         }
 
         $user->getFile()->move(__DIR__.$dir, $user->getId().'.'.$user->getExtension());
