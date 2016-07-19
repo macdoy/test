@@ -11,7 +11,7 @@ class FileUploader
     protected $dir;
     protected $allowed;
 
-    public function __construct($dir, $allowed)
+    public function __construct($dir, array $allowed)
     {
         if (!is_dir($dir)) {
             throw new Exception($dir." Not found");
@@ -20,23 +20,13 @@ class FileUploader
         $this->allowed = $allowed;
     }
 
-    public function getDir()
-    {
-      return $this->dir;
-    }
-
-    public function getAllowed()
-    {
-      return $this->allowed;
-    }
-
-    public function upload($dir, $allowed, $user)
+    public function upload($user)
     {
         if (null === $user->getFile()) {
             return;
         }
 
-        $user->getFile()->move($dir, $user->getId().'.'.$user->getExtension());
-        $info = getimagesize($dir.'/'.$user->getId().'.'.$user->getExtension());
+        $user->getFile()->move($this->dir, $user->getId().'.'.$user->getExtension());
+        $info = getimagesize($this->dir.'/'.$user->getId().'.'.$user->getExtension());
     }
 }

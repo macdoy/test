@@ -53,7 +53,7 @@ class IndexController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            $uploader->upload($uploader->getDir(), $uploader->getAllowed(), $user);
+            $uploader->upload($user);
         }
 
         return array('form' => $form->createView(), 'error' => $form->isValid(), 'nom' => $user->getNom());

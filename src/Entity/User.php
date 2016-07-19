@@ -184,7 +184,7 @@ class User extends AbstractType
         $this->file = $file;
 
         if ($this->file) {
-            $this->extension = $this->file->getExtension();
+            $this->extension = $this->file->guessExtension();
         }
     }
 }
