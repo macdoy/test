@@ -13,11 +13,11 @@ class FileUploader
 
     public function __construct($dir, $allowed)
     {
-      if (!is_dir($dir)) {
-          throw new Exception($dir." Not found");
-      }
-      $this->dir = $dir;
-      $this->allowed = $allowed;
+        if (!is_dir($dir)) {
+            throw new Exception($dir." Not found");
+        }
+        $this->dir = $dir;
+        $this->allowed = $allowed;
     }
 
     public function getDir()
