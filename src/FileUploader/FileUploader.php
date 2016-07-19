@@ -4,29 +4,39 @@ namespace Potogan\TestBundle\FileUploader;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Security\Acl\Exception\Exception;
+use Exception;
 
 class FileUploader
 {
+    protected $dir;
+    protected $allowed;
+
+    public function __construct($dir, $allowed)
+    {
+      if (!is_dir($dir)) {
+          throw new Exception($dir." Not found");
+      }
+      $this->dir = $dir;
+      $this->allowed = $allowed;
+    }
+
+    public function getDir()
+    {
+      return $this->dir;
+    }
+
+    public function getAllowed()
+    {
+      return $this->allowed;
+    }
+
     public function upload($dir, $allowed, $user)
     {
-        if (!is_dir(__DIR__.$dir)) {
-            throw new Exception(__DIR__.$dir."Not found");
-        }
-
         if (null === $user->getFile()) {
             return;
         }
 
-        if (!in_array($user->getExtension(), $allowed)) {
-            throw new Exception("Forbiden extension");
-        }
-
-        $user->getFile()->move(__DIR__.$dir, $user->getId().'.'.$user->getExtension());
-        $info = getimagesize(__DIR__.$dir.'/'.$user->getId().'.'.$user->getExtension());
-
-        if ($info[0] > 420 || $info[1] > 420) {
-            unlink(__DIR__.$dir.'/'.$user->getId().'.'.$user->getExtension());
-        }
+        $user->getFile()->move($dir, $user->getId().'.'.$user->getExtension());
+        $info = getimagesize($dir.'/'.$user->getId().'.'.$user->getExtension());
     }
 }

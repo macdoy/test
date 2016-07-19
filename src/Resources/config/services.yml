@@ -1,5 +1,13 @@
 # Services definition
+parameters:
+    potogan_test.file_uploader.dir: "%kernel.root_dir%/../web/upload"
+    potogan_test.file_uploader.allowed:
+        - png
+        - bmp
+        - jpg
+        - jpeg
+
 services:
     potogan_test.file_uploader.file_uploader:
         class: Potogan\TestBundle\FileUploader\FileUploader
-        arguments: [$dir, $allowed, $user]
+        arguments: ['%potogan_test.file_uploader.dir%', '%potogan_test.file_uploader.allowed%']

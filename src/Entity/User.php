@@ -13,8 +13,8 @@ use Potogan\TestBundle\Validator\Constraints as AcmeAssert;
 * User
 * @ORM\Entity
 * @ORM\Table(name="user")
-* @UniqueEntity("email")
-* @UniqueEntity("pseudo")
+* @UniqueEntity("email", message="This email is already in used.")
+* @UniqueEntity("pseudo", message="This pseudo is already in used.")
 */
 class User extends AbstractType
 {
@@ -184,7 +184,7 @@ class User extends AbstractType
         $this->file = $file;
 
         if ($this->file) {
-            $this->extension = $this->file->guessExtension();
+            $this->extension = $this->file->getExtension();
         }
     }
 }
