@@ -4,6 +4,7 @@ namespace Potogan\TestBundle\Validator\Constraints\Twitter;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use GuzzleHttp\Client;
 
 class ContainsTwitterValidator extends ConstraintValidator
 {
@@ -20,17 +21,11 @@ class ContainsTwitterValidator extends ConstraintValidator
             return;
         }
 
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://twitter.com/'.substr($value, 1),
-            CURLOPT_USERAGENT => "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
-            CURLOPT_HEADER => true,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_NOBODY => true));
-        $header = explode("\n", curl_exec($curl));
-        curl_close($curl);
+        $client = new Client();
+        $res = $client->request('GET', 'https://twitter.com/'.substr($value, 1), ['exceptions' => false]);
+        $header = $res->getStatusCode();
 
-        if (!strpos($header[0], '200')) {
+        if ($header !== 200) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%string%', $value)
                 ->addViolation();
