@@ -11,3 +11,18 @@ services:
     potogan_test.file_uploader.file_uploader:
         class: Potogan\TestBundle\FileUploader\FileUploader
         arguments: ['%potogan_test.file_uploader.dir%', '%potogan_test.file_uploader.allowed%']
+
+    http_client:
+        class: GuzzleHttp\Client
+
+    validator.contains_facebook:
+        class: Potogan\TestBundle\Validator\Constraints\Facebook\ContainsFacebookValidator
+        arguments: [@http_client]
+        tags:
+            - { name : validator.constraint_validator, alias: facebook_validator }
+
+    validator.contains_twitter:
+        class: Potogan\TestBundle\Validator\Constraints\Twitter\ContainsTwitterValidator
+        arguments: [@http_client]
+        tags:
+            - { name : validator.constraint_validator, alias: twitter_validator }

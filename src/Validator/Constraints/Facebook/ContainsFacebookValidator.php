@@ -8,6 +8,13 @@ use GuzzleHttp\Client;
 
 class ContainsFacebookValidator extends ConstraintValidator
 {
+    protected $client;
+
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
+
     public function validate($value, Constraint $constraint)
     {
         if ($value === null) {
@@ -21,8 +28,7 @@ class ContainsFacebookValidator extends ConstraintValidator
             return;
         }
 
-        $client = new Client();
-        $res = $client->request('GET', $value, ['exceptions' => false]);
+        $res = $this->client->request('GET', $value, ['exceptions' => false]);
         $header = $res->getStatusCode();
 
         if ($header !== 200) {

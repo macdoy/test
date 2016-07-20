@@ -9,5 +9,10 @@ use Symfony\Component\Validator\Constraint;
 */
 class ContainsFacebook extends Constraint
 {
+    public function validatedBy()
+    {
+        return 'facebook_validator';
+    }
+
     public $message = '%string% is not a valid Facebook.';
 }
